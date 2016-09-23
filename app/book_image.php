@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class book_image extends Model
+class Book_image extends Model
 {
 	protected $table='book_images';
 	protected $fillable=['profile_id','image','id'];
