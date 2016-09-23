@@ -11,7 +11,7 @@ class Subject extends Model
 	protected $fillable=['subjectName','id'];
 	public $timestamps=true;
 	public function profile(){
-		return $this->belongsToMany('App\profile','subject_profile','subject_id','profile_id');
+		return $this->belongsToMany('App\Profile','subject_profile','subject_id','profile_id');
 	}
     //
 }

@@ -10,7 +10,7 @@ class Book_image extends Model
 	protected $fillable=['profile_id','image','id'];
 	public $timestamps=true;
 	public function profile(){
-		return $this->belongsTo('App\profile','profile_id');
+		return $this->belongsTo('App\Profile','profile_id');
 		
 	}
     //
