@@ -16,6 +16,7 @@ class CreateProfile extends Migration
             $table->increments('id');
             $table->integer('user_id')
             $table->string('name',100);
+            $table->string('email');
             $table->string('phone1');
             $table->string('phone2');
             $table->char('gender',2);
