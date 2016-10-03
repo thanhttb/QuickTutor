@@ -11,16 +11,8 @@
         </div>
     @endif
 
-
-
-
-
     <div id="profile-info">
-        @if(!$profile)
-            Chưa có thông tin gì.
-        @else
-
-        @endif
+        
     </div>
 
 @stop

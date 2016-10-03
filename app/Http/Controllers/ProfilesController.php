@@ -10,6 +10,8 @@ use App;
 
 use App\Profile;
 use App\User;
+use App\Subject;
+use Carbon\Carbon;
 
 class ProfilesController extends Controller
 {
@@ -23,15 +25,22 @@ class ProfilesController extends Controller
     }
 
     public function index(User $user){
-        $profile = $user->profile;
-        return view ('tutor.viewProfile', ['user' => $user, 'profile' => $profile]);
+        return view ('tutor.viewProfile', ['user' => $user, 'profile' => $user->profile]);
     }
 
     public function edit(User $user){
         if(\Auth::user() == $user){
-            if(!$user->profile) $profile = new Profile;
-            return view('tutor.editProfile');
+            if(!$user->profile){
+                $user->profile()->create(['user_id'=>$user->id]);
+            }
+            return view('tutor.editProfile', ['profile'=>$user->profile, 'subjects' => Subject::all()]);
         }
         else return back();
+    }
+
+    public function save(Request $request, Profile $profile){
+        $profile->update($request->all());
+        $profile->subjects()->sync($request->get('subjects'));
+        return view('tutor.editProfile', ['profile' => $profile, 'subjects' => Subject::all()]);
     }
 }

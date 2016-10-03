@@ -24,3 +24,5 @@ Route::get('/components', 'ProfilesController@viewAllComponents');
 Route::get('/profile/{user}', 'ProfilesController@index');
 
 Route::get('/edit/{user}', 'ProfilesController@edit');
+
+Route::patch('/editProfile/save/{profile}', 'ProfilesController@save');
