@@ -6,12 +6,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class Subject extends Model
 {
+    protected $fillable = [
+        'name',
+    ];
 
-	protected $table='subjects';
-	protected $fillable=['subjectName','id'];
-	public $timestamps=true;
-	public function profile(){
-		return $this->belongsToMany('App\Profile','subject_profile','subject_id','profile_id');
-	}
-    //
+    public function profiles(){
+        return $this->belongsToMany('App\Profile');
+    }
 }
