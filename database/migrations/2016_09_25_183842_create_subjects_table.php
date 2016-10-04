@@ -18,6 +18,15 @@ class CreateSubjectsTable extends Migration
             $table->string('name');
             $table->timestamps();
         });
+
+        Schema::create('profile_subject', function(Blueprint $table){
+            $table->integer('profile_id')->unsigned()->index();
+            $table->foreign('profile_id')->references('id')->on('profiles')->onDelete('cascade');
+
+            $table->integer('subject_id')->unsigned()->index();
+            $table->foreign('subject_id')->references('id')->on('subjects')->onDelete('cascade');
+            $table->timestamps();
+        });
     }
 
     /**
@@ -28,5 +37,6 @@ class CreateSubjectsTable extends Migration
     public function down()
     {
         Schema::dropIfExists('subjects');
+        Schema::dropIfExists('profile_subject');
     }
 }

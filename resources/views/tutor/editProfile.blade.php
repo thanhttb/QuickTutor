@@ -138,6 +138,14 @@
                 </div>
             </div>
 
+            <div class="form-group">
+              <label class="control-label col-sm-3" for="price">Tiền dạy tối thiểu 1 giờ</label>
+              <div class="col-sm-9">
+                <input type="number" class="form-control" name="price" id="price" value= "{{$profile->price}}" placeholder="{{$profile->price}}" required>
+              </div>
+            </div>
+
+
         </div>
 
         <div class="col-sm-offset-5 col-sm-7">

@@ -40,7 +40,7 @@ class ProfilesController extends Controller
 
     public function save(Request $request, Profile $profile){
         $profile->update($request->all());
-        $profile->subjects()->sync($request->get('subjects'));
+        $profile->subjects()->sync((array)$request->input('subjects'));
         return view('tutor.editProfile', ['profile' => $profile, 'subjects' => Subject::all()]);
     }
 

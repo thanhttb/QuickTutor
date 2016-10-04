@@ -16,7 +16,7 @@ class CreateProfilesTable extends Migration
         Schema::create('profiles', function (Blueprint $table) {
             $table->increments('id');
 
-            $table->integer('user_id');
+            $table->integer('user_id')->unsigned();
             $table->string('name')->nullable();
             $table->string('email')->default("email@example.com");
             $table->string('phone1')->nullable();
@@ -31,6 +31,7 @@ class CreateProfilesTable extends Migration
             $table->string('linkAvatar')->nullable();
             $table->string('linkVideo')->nullable();
             $table->boolean('active')->default(1);
+            $table->integer('price')->unsigned()->default(100000);
             $table->timestamps();
         });
     }

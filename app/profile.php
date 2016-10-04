@@ -8,7 +8,7 @@ class Profile extends Model
 {
     protected $fillable = [
          'user_id', 'name', 'email', 'phone1', 'phone2', 'facebook', 'gender',
-         'birthDay', 'job', 'address', 'school', 'bio', 'linkAvatar', 'linkVideo', 'active',
+         'birthDay', 'job', 'address', 'school', 'bio', 'linkAvatar', 'linkVideo', 'active', 'price'
     ];
 
     public function user(){
@@ -19,8 +19,8 @@ class Profile extends Model
         return $this->belongsToMany('App\Subject');
     }
 
-    public function sprare_times(){
-        return $this->belongsToMany('App\SpareTime','profile_spare_time', 'profile_id', 'spare_time_id');
+    public function times(){
+        return $this->belongsToMany('App\Time');
     }
 
     public function districts(){

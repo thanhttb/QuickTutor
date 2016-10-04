@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateDistrictsTable extends Migration
+class CreateTimesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,19 +13,19 @@ class CreateDistrictsTable extends Migration
      */
     public function up()
     {
-        Schema::create('districts', function (Blueprint $table) {
+        Schema::create('times', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name');
-            $table->integer('city_id');
+            $table->string('day');
+            $table->string('session');
             $table->timestamps();
         });
 
-        Schema::create('district_profile', function(Blueprint $table){
-            $table->integer('distric_id')->unsigned()->index();
-            $table->foreign('distric_id')->references('id')->on('districts')->onDelete('cascade');
-
+        Schema::create('profile_time', function(Blueprint $table){
             $table->integer('profile_id')->unsigned()->index();
             $table->foreign('profile_id')->references('id')->on('profiles')->onDelete('cascade');
+
+            $table->integer('time_id')->unsigned()->index();
+            $table->foreign('time_id')->references('id')->on('times')->onDelete('cascade');
 
             $table->timestamps();
         });
@@ -38,8 +38,7 @@ class CreateDistrictsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('districts');
-        Schema::dropIfExists('district_profile');
-
+        Schema::dropIfExists('times');
+        Schema::dropIfExists('profile_time');
     }
 }
