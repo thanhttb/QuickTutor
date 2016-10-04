@@ -31,7 +31,7 @@ class ProfilesController extends Controller
     public function edit(User $user){
         if(\Auth::user() == $user){
             if(!$user->profile){
-                $user->profile()->create(['user_id'=>$user->id]);
+                $user->profile = Profile::create(['user_id'=>$user->id]);
             }
             return view('tutor.editProfile', ['profile'=>$user->profile, 'subjects' => Subject::all()]);
         }
@@ -42,5 +42,10 @@ class ProfilesController extends Controller
         $profile->update($request->all());
         $profile->subjects()->sync($request->get('subjects'));
         return view('tutor.editProfile', ['profile' => $profile, 'subjects' => Subject::all()]);
+    }
+
+    public function destroy(User $user){
+        $user->profile->delete();
+        return redirect('home');
     }
 }

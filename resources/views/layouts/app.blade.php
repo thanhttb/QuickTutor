@@ -19,6 +19,8 @@
             'csrfToken' => csrf_token(),
         ]); ?>
     </script>
+
+
 </head>
 <body>
     <nav class="navbar navbar-default navbar-static-top">
@@ -35,7 +37,7 @@
 
                 <!-- Branding Image -->
                 <a class="navbar-brand" href="{{ url('/') }}">
-                    {{ config('app.name', 'Laravel') }}
+                    <b>{{ config('app.name', 'Laravel') }}</b>
                 </a>
             </div>
 
@@ -89,9 +91,12 @@
         </div>
     </nav>
 
-    @yield('content')
+    <div class="container">
+        @yield('content')
+    </div>
 
     <!-- Scripts -->
     <script src="/js/app.js"></script>
+    @yield('footer')
 </body>
 </html>
