@@ -27,4 +27,8 @@ Route::get('/edit/{user}', 'ProfilesController@edit');
 
 Route::get('/delete/{user}', 'ProfilesController@destroy');
 
+Route::get('/makeData', 'ProfilesController@addSampleData');
+
 Route::patch('/editProfile/save/{profile}', 'ProfilesController@save');
+
+Route::post('/getDistrict', 'ProfilesController@getDistrict');

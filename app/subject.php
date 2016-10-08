@@ -11,6 +11,6 @@ class Subject extends Model
     ];
 
     public function profiles(){
-        return $this->belongsToMany('App\Profile');
+        return $this->belongsToMany('App\Profile')->withTimestamps();
     }
 }

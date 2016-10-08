@@ -20,8 +20,8 @@
     <div class="jumbotron">
         <h3>Spare Time</h3>
         <ul>
-            @foreach($spareTimes as $spareTime)
-                <li>{{$spareTime->day.': '.$spareTime->session}}</li>
+            @foreach($times as $time)
+                <li>{{$time->day.': '.$time->session}}</li>
             @endforeach
         </ul>
     </div>

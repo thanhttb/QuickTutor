@@ -10,6 +10,6 @@ class Time extends Model
          'day', 'session',
     ];
     public function profiles(){
-        return $this->belongsToMany('App\Profile');
+        return $this->belongsToMany('App\Profile')->withTimestamps();
     }
 }

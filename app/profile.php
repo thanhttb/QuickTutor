@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Profile extends Model
 {
     protected $fillable = [
-         'user_id', 'name', 'email', 'phone1', 'phone2', 'facebook', 'gender',
+         'user_id', 'city_id', 'name', 'email', 'phone1', 'phone2', 'facebook', 'gender',
          'birthDay', 'job', 'address', 'school', 'bio', 'linkAvatar', 'linkVideo', 'active', 'price'
     ];
 
@@ -16,18 +16,22 @@ class Profile extends Model
     }
 
     public function subjects(){
-        return $this->belongsToMany('App\Subject');
+        return $this->belongsToMany('App\Subject')->withTimestamps();
     }
 
     public function times(){
-        return $this->belongsToMany('App\Time');
+        return $this->belongsToMany('App\Time')->withTimestamps();
     }
 
     public function districts(){
-        return $this->belongsToMany('App\District');
+        return $this->belongsToMany('App\District')->withTimestamps();
     }
 
     public function attachments(){
         return $this->hasMany('App\Attachment');
+    }
+
+    public function city(){
+        return $this->belongsTo('App\City');
     }
 }

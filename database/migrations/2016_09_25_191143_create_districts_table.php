@@ -21,8 +21,8 @@ class CreateDistrictsTable extends Migration
         });
 
         Schema::create('district_profile', function(Blueprint $table){
-            $table->integer('distric_id')->unsigned()->index();
-            $table->foreign('distric_id')->references('id')->on('districts')->onDelete('cascade');
+            $table->integer('district_id')->unsigned()->index();
+            $table->foreign('district_id')->references('id')->on('districts')->onDelete('cascade');
 
             $table->integer('profile_id')->unsigned()->index();
             $table->foreign('profile_id')->references('id')->on('profiles')->onDelete('cascade');
