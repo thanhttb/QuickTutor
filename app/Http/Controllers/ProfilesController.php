@@ -43,9 +43,15 @@ class ProfilesController extends Controller
     }
 
     public function save(Request $request, Profile $profile){
-        // dd($request->all());
+        if($request->active1){
+            $profile->active = 1;
+        } else{
+            $profile->active = 0;
+        }
+        // dd($request);
         $profile->update($request->all());
-        // dd($profile);
+        // dd($profile->times);
+
         $profile->subjects()->sync((array)$request->input('subjects'));
         $profile->districts()->sync((array)$request->input('districts'));
         $profile->times()->sync((array)$request->input('times'));

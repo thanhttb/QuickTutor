@@ -1,22 +1,28 @@
-@extends('layouts.app')
+@extends('layout')
 
 @section('header')
     <title>Edit your profile</title>
     <meta name="_token" content="{!! csrf_token() !!}"/>
 @stop
 
-
-
 @section('content')
 
     <form class="form-horizontal" action="/editProfile/save/{{ $profile->id }}" method="POST">
         {{ method_field('PATCH') }}
         {{ csrf_field() }}
+
         <div class="col-sm-6">
             <h2 style="color:silver"><b>Thông tin cá nhân </b></h2>
             <hr>
             <div class="form-group">
-              <label class="control-label col-sm-3" for="name" required>Họ và Tên</label>
+              <label class="control-label col-sm-3" for="active1">Active</label>
+              <div class="col-sm-9">
+                <input type="checkbox" class="form-control" name="active1" id="active1" {{($profile->active) ? 'checked':''}}>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="control-label col-sm-3" for="name">Họ và Tên</label>
               <div class="col-sm-9">
                 <input type="text" class="form-control" name="name" id="name" value= "{{$profile->name}}" placeholder="{{$profile->name}}" required>
               </div>
@@ -64,7 +70,6 @@
                     </label>
                 </div>
             </div>
-
 
             <div class="form-group">
                 <label class = "control-label col-sm-3" for="birthDay">Ngày sinh</label>
@@ -239,8 +244,12 @@
 @stop
 
 @section('footer')
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css" rel="stylesheet" />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
+    {{-- select2 --}}
+    <link href="/css/select2.min.css" rel="stylesheet" />
+    <script src="/js/select2.min.js"></script>
+    {{-- bootstrap-switch --}}
+    <link href="/css/bootstrap-switch.min.css" rel="stylesheet">
+    <script src="/js/bootstrap-switch.min.js"></script>
 
     <script type="text/javascript">
         $("document").ready(function(){
@@ -252,6 +261,7 @@
                 placeholder: 'Các quận/huyện bạn dạy được',
                 width: '100%'
             });
+            $("#active1").bootstrapSwitch();
             @foreach($profile->times as $time)
                 var idtime = "#time" + {{$time->id}};
                 $(idtime).attr("checked", true);
