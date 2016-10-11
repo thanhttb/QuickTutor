@@ -22,6 +22,7 @@ class PagesController extends Controller
         return view('pages.findTutor', ['cities' => City::all(), 'subjects' => Subject::all()]);
     }
     public function findTutorResult(Request $request){
+        // dd($request);
         $gender = $request->gender;
         $job = $request->job;
         $city_id = $request->city_id;
@@ -49,6 +50,6 @@ class PagesController extends Controller
                 $query->whereIn('id',$subjects);
             });
         });
-        dd($results->get());
+        echo ($results->get()->toJson());
     }
 }

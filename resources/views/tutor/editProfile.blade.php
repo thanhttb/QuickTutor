@@ -1,4 +1,4 @@
-@extends('layout')
+@extends('layouts.app')
 
 @section('header')
     <title>Edit your profile</title>
@@ -10,9 +10,9 @@
     <form class="form-horizontal" action="/editProfile/save/{{ $profile->id }}" method="POST">
         {{ method_field('PATCH') }}
         {{ csrf_field() }}
-
+        <fieldset>
         <div class="col-sm-6">
-            <h2 style="color:silver"><b>Thông tin cá nhân </b></h2>
+            <h2 style="color:#99c93d"><b>Thông tin cá nhân </b></h2>
             <hr>
             <div class="form-group">
               <label class="control-label col-sm-3" for="active1">Active</label>
@@ -130,7 +130,7 @@
         </div>
 
         <div class="col-sm-6">
-            <h2 style="color:silver"><b>Thông tin giảng dạy</b></h2>
+            <h2 style="color:#99c93d"><b>Thông tin giảng dạy</b></h2>
             <hr>
 
             <div class="form-group">
@@ -154,7 +154,7 @@
             <div class="form-group">
                 <label class="control-label col-sm-3" for="subjects" >Thành Phố (nơi dạy)</label>
                 <div class="col-sm-9">
-                    <select class="js-example-basic-single form-control" id="city_id" name="city_id" onChange="getDistrict(this.value);">
+                    <select class="form-control" id="city_id" name="city_id" onChange="getDistrict(this.value);">
                         <option value="0">Chọn Thành Phố</option>
                         @foreach($cities as $city)
                             <option value= {{$city->id}} @if($city->id == $profile->city_id) selected="selected" @endif>{{$city->name}}</option>
@@ -166,7 +166,7 @@
             <div class="form-group">
                 <label class="control-label col-sm-3" for="districts" >Quận/Huyện</label>
                 <div class="col-sm-9">
-                    <select class="js-example-basic-multiple js-states form-control" id="districts" name="districts[]" multiple="multiple">
+                    <select class="form-control" id="districts" name="districts[]" multiple="multiple">
                             @if($profile->city)
                                 @foreach($profile->city->districts as $district)
                                     <option value={{$district->id}}@foreach($profile->districts as $s) @if($district->id == $s->id) selected="selected" @endif @endforeach>{{$district->name}}</option>
@@ -239,13 +239,13 @@
         <div class="col-sm-offset-5 col-sm-7">
             <button type="submit" name="button" id="submitBtn" class="btn btn-primary">Update profile</button>
         </div>
+    </fieldset>
     </form>
 
 @stop
 
 @section('footer')
-    {{-- select2 --}}
-    <link href="/css/select2.min.css" rel="stylesheet" />
+    <link href="/css/select2-bootstrap.css" rel="stylesheet" />
     <script src="/js/select2.min.js"></script>
     {{-- bootstrap-switch --}}
     <link href="/css/bootstrap-switch.min.css" rel="stylesheet">

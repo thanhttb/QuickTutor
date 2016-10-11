@@ -11,7 +11,10 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Styles -->
-    <link href="/css/app.css" rel="stylesheet">
+    {{-- <link href="/css/app.css" rel="stylesheet"> --}}
+    <link href="/css/boostrap-flatly.min.css" rel="stylesheet">
+    <link href="/css/select2-bootstrap.css" rel="stylesheet" />
+    <link href="/css/bootstrap-switch.min.css" rel="stylesheet">
 
     <!-- Scripts -->
     <script>
@@ -91,12 +94,17 @@
         </div>
     </nav>
 
-    <div class="container">
+    <div class="container-fluid">
         @yield('content')
     </div>
+    <script src="/js/jquery-3.1.1.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
 
+
+    <script src="/js/select2.min.js"></script>
+    <script src="/js/bootstrap-switch.min.js"></script>
     <!-- Scripts -->
-    <script src="/js/app.js"></script>
+    {{-- <script src="/js/app.js"></script> --}}
     @yield('footer')
 </body>
 </html>
