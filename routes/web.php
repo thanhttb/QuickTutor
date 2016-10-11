@@ -36,3 +36,7 @@ Route::get('/test', function(){
 Route::patch('/editProfile/save/{profile}', 'ProfilesController@save');
 
 Route::post('/getDistrict', 'ProfilesController@getDistrict');
+
+Route::get('/findTutor', 'PagesController@findTutorIndex');
+
+Route::post('/findTutor','PagesController@findTutorResult');

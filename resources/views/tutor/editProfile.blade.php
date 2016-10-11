@@ -269,6 +269,10 @@
         });
 
         function getDistrict(val){
+            if (val == 0) {
+                $("#districts").html("");
+                return;
+            }
             function template(id, name) {
                 var text = "<option value=" + id + ">" + name + "</option>";
                 return text;
@@ -289,7 +293,6 @@
                     });
             		$("#districts").html(text);
                     console.log(data);
-
             	},
                 error: function(xhr, status, error) {
                     console.log(status, error);

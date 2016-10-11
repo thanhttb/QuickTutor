@@ -26,11 +26,11 @@ class CreateProfilesTable extends Migration
             $table->string('gender')->nullable();
             $table->timestamp('birthDay')->nullable();
             $table->string('job')->nullable();
-            $table->string('address')->nullable();
+            $table->text('address')->nullable();
             $table->string('school')->nullable();
-            $table->string('bio')->nullable();
-            $table->string('linkAvatar')->nullable();
-            $table->string('linkVideo')->nullable();
+            $table->text('bio')->nullable();
+            $table->text('linkAvatar')->nullable();
+            $table->text('linkVideo')->nullable();
             $table->boolean('active')->default(1);
             $table->integer('price')->unsigned()->default(100000);
             $table->timestamps();

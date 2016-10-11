@@ -16,7 +16,7 @@ class CreateAttachmentsTable extends Migration
         Schema::create('attachments', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('profile_id')->unsigned();
-            $table->string('linkAttach');
+            $table->text('linkAttach');
             $table->string('name');
             $table->boolean('public')->default(1); // 1-> public 0->private
             $table->timestamps();

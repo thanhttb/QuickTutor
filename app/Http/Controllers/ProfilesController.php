@@ -39,7 +39,7 @@ class ProfilesController extends Controller
             }
             return view('tutor.editProfile', ['profile'=>$user->profile, 'subjects' => Subject::all(), 'cities' => City::all()]);
         }
-        else return back();
+        else redirect('home');
     }
 
     public function save(Request $request, Profile $profile){
@@ -66,7 +66,9 @@ class ProfilesController extends Controller
     public function getDistrict(Request $request){
         $city_id = $request->input('city_id');
         $districts = City::findOrFail($city_id)->districts;
-        echo($districts->toJson());
+        if($districts){
+             echo($districts->toJson());
+        }
     }
 
     public function addSampleData(){
