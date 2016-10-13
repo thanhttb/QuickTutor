@@ -29,27 +29,29 @@ class PagesController extends Controller
         $districts = $request->districts;
         $subjects = $request->subjects;
 
-        $results = Profile::when($gender,function($query) use ($gender){
+        $resultProfiles = Profile::when($gender,function($query) use ($gender){
             return $query->where('gender', $gender);
         });
-        $results = $results->when($job,function($query) use ($job){
+        $resultProfiles = $resultProfiles->when($job,function($query) use ($job){
             return $query->where('job', $job);
         });
-        $results = $results->when($city_id, function($query) use ($city_id){
+        $resultProfiles = $resultProfiles->when($city_id, function($query) use ($city_id){
             return $query->whereHas('city', function ($query) use ($city_id) {
                 $query->where('id', $city_id);
             });
         });
-        $results = $results->when($districts, function($query) use ($districts){
+        $resultProfiles = $resultProfiles->when($districts, function($query) use ($districts){
             return $query->whereHas('districts', function($query) use ($districts){
                 $query->whereIn('id',$districts);
             });
         });
-        $results = $results->when($subjects, function($query) use ($subjects){
+        $resultProfiles = $resultProfiles->when($subjects, function($query) use ($subjects){
             return $query->whereHas('subjects', function($query) use ($subjects){
                 $query->whereIn('id',$subjects);
             });
         });
-        echo ($results->get()->toJson());
+        $resultProfiles = $resultProfiles->where('active', 1);
+        $resultProfiles = $resultProfiles->paginate(1);
+        return view('tutor.resultSearchProfiles', ['profiles' => $resultProfiles])->render();
     }
 }
