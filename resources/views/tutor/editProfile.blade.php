@@ -176,7 +176,7 @@
                 </div>
             </div>
             <div class="form-group">
-                <label class="control-label col-sm-3" for="times" >Thời gian rảnh:</label>
+                <label class="control-label col-sm-3" for="times" >Thời gian rảnh</label>
                 <div class="col-sm-offset-3 col-sm-9">
                     <table class="table" name="times">
                         <thead>
