@@ -11,9 +11,9 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
 Auth::routes();
 
@@ -29,14 +29,14 @@ Route::get('/delete/{user}', 'ProfilesController@destroy');
 
 Route::get('/makeData', 'ProfilesController@addSampleData');
 
-Route::get('/test', function(){
-    return view('test');
-});
+// Route::get('/test', function(){
+//     return view('test');
+// });
 
 Route::patch('/editProfile/save/{profile}', 'ProfilesController@save');
 
 Route::post('/getDistrict', 'ProfilesController@getDistrict');
 
-Route::get('/findTutor', 'PagesController@findTutorIndex');
+Route::get('/', 'PagesController@findTutorIndex');
 
 Route::post('/findTutor','PagesController@findTutorResult');

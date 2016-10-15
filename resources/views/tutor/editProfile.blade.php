@@ -108,9 +108,9 @@
             </div>
 
             <div class="form-group">
-              <label class="control-label col-sm-3" for="bio" >Tiểu sử bản thân</label>
+              <label class="control-label col-sm-3" for="bio" >Giới thiệu bản thân</label>
               <div class="col-sm-9">
-                <textarea class="form-control" rows="5" name="bio" id="bio">{{$profile->bio}}</textarea>
+                <textarea class="form-control" rows="8" name="bio" id="bio">{{$profile->bio}}</textarea>
               </div>
             </div>
 
@@ -176,7 +176,7 @@
                 </div>
             </div>
             <div class="form-group">
-                <label class="control-label col-sm-3" for="times" >Thời gian dạy</label>
+                <label class="control-label col-sm-3" for="times" >Thời gian rảnh:</label>
                 <div class="col-sm-offset-3 col-sm-9">
                     <table class="table" name="times">
                         <thead>

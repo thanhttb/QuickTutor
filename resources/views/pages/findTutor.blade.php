@@ -6,6 +6,7 @@
     <link href="/css/Hongportfolio.css" rel="stylesheet">
 
     <link href="/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="/css/Hongmodal.css" rel="stylesheet">
     {{-- <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
     <link href='https://fonts.googleapis.com/css?family=Kaushan+Script' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
@@ -70,6 +71,7 @@
 
 
 @section('footer')
+    <script src="/js/Hongmodal.js" charset="utf-8"></script>
     <script type="text/javascript">
         $("document").ready(function(){
             $("#subjects").select2({
@@ -111,7 +113,7 @@
                         text += template(val.id, val.name);
                     });
                     $("#districts").html(text);
-                    console.log(data);
+                    // console.log(data);
                 },
                 error: function(xhr, status, error) {
                     console.log(status, error);
@@ -132,13 +134,19 @@
                 },
                 success: function(data){
                     $("#result").html(data);
-                    console.log(data);
+                    var cw = $('.profile-img').width();
+                    $('.profile-img').css({'height':0.7*cw+'px'});
+                    // console.log(data);
                 },
                 error: function(xhr, status, error) {
                     console.log(status, error);
                 }
             });
         }
+        $(window).resize(function(){
+            var cw = $('.profile-img').width();
+            $('.profile-img').css({'height':0.7*cw+'px'});
+        });
 
         $(window).on('hashchange',function(){
 			page = window.location.hash.replace('#','');
@@ -149,7 +157,6 @@
 			var page = $(this).attr('href').split('page=')[1];
 			location.hash = page;
 		});
-
     </script>
     <script type="text/javascript">
         $.ajaxSetup({

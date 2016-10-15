@@ -51,7 +51,7 @@ class PagesController extends Controller
             });
         });
         $resultProfiles = $resultProfiles->where('active', 1);
-        $resultProfiles = $resultProfiles->paginate(1);
+        $resultProfiles = $resultProfiles->paginate(12);
         return view('tutor.resultSearchProfiles', ['profiles' => $resultProfiles])->render();
     }
 }
