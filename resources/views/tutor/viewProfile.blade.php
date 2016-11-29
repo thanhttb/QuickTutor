@@ -28,7 +28,9 @@
             <div class="col-sm-6">
               <h4 class="text-center text-success index">THÔNG TIN CÁ NHÂN</h4>
               <p>Họ và tên: {{$profile->name}}</p>
-              <p>Sinh ngày: <?php $x = Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $profile->birthDay) ?> {{$x->day}}/{{$x->month}}/{{$x->year}}</p>
+              @if($profile->birthDay)
+                <p>Sinh ngày: <?php $x = Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $profile->birthDay) ?> {{$x->day}}/{{$x->month}}/{{$x->year}}</p>
+              @endif
               <p>Giới tính: {{$profile->gender}}</p>
               <p>Email: {{$profile->email}}</p>
               <p>Điện thoại: {{$profile->phone1}} - {{$profile->phone2}}</p>
