@@ -1,76 +1,92 @@
 @extends('layouts.app')
 
 @section('header')
-    <title>Find Tutor</title>
+    <title>Find Tutor | Tutor Online</title>
     <meta name="_token" content="{!! csrf_token() !!}"/>
     <link href="/css/Hongportfolio.css" rel="stylesheet">
-
     <link href="/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <link href="/css/Hongmodal.css" rel="stylesheet">
-    {{-- <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
-    <link href='https://fonts.googleapis.com/css?family=Kaushan+Script' rel='stylesheet' type='text/css'>
-    <link href='https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
-    <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700' rel='stylesheet' type='text/css'> --}}
+    <link href="/css/responsive-iframe.css" rel="stylesheet">
+    <link href="/css/viewProfile.css" rel="stylesheet">
+    <style type="text/css">
+        .backImage {
+          background-image: url('https://blackrockdigital.github.io/startbootstrap-agency/img/header-bg.jpg');
+          background-repeat: no-repeat;
+          background-attachment: scroll;
+          background-position: center center;
+          -webkit-background-size: cover;
+          -moz-background-size: cover;
+          background-size: cover;
+          -o-background-size: cover;
+          text-align: center;
+          color: white;
+        }
+        #filter{
+            padding-top: 75px;
+            padding-bottom: 1200px;
+        }
+    </style>
 @stop
 
 
 @section('content')
-    <div class="container-fluid">
-        <div class="col-sm-offset-1 col-sm-12">
-            <form class="form-horizontal">
-                {{ csrf_field() }}
+    <form class="form-horizontal backImage" id="filter">
+        {{ csrf_field() }}
+        <div class="col-sm-offset-1 col-sm-11">
+            <div class="form-group col-sm-11">
+                <select class="js-example-basic-multiple js-states form-control" id="subjects" name="subjects[]" multiple="multiple">
+                     @foreach($subjects as $subject)
+                          <option value={{$subject->id}}>{{$subject->name}}</option>
+                     @endforeach
+                </select>
+            </div>
 
-                <div class="form-group col-sm-2">
-                    <select class="js-example-basic-multiple js-states form-control" id="subjects" name="subjects[]" multiple="multiple">
-                         @foreach($subjects as $subject)
-                              <option value={{$subject->id}}>{{$subject->name}}</option>
-                         @endforeach
-                    </select>
-                </div>
+            <div class="form-group col-sm-2">
+                <select class="form-control" id="city_id" name="city_id" onChange="getDistrict(this.value);">
+                    <option value="">Thành Phố</option>
+                    @foreach($cities as $city)
+                        <option value= {{$city->id}}>{{$city->name}}</option>
+                    @endforeach
+                </select>
+            </div>
 
-                <div class="form-group col-sm-2">
-                    <select class="form-control" id="city_id" name="city_id" onChange="getDistrict(this.value);">
-                        <option value="">Thành Phố</option>
-                        @foreach($cities as $city)
-                            <option value= {{$city->id}}>{{$city->name}}</option>
-                        @endforeach
-                    </select>
-                </div>
+            <div class="form-group col-sm-6">
+                <select class="js-example-basic-multiple js-states form-control" id="districts" name="districts[]" multiple="multiple"></select>
+            </div>
 
-                <div class="form-group col-sm-3">
-                    <select class="js-example-basic-multiple js-states form-control" id="districts" name="districts[]" multiple="multiple"></select>
-                </div>
-
-                <div class="form-group col-sm-2">
-                    <select class="form-control" id="job" name="job">
-                        <option value="">Chức danh</option>
-                        <option value= "hoc sinh">Học sinh</option>
-                        <option value= "sinh vien">Sinh viên</option>
-                        <option value= "giang vien">Giảng viên</option>
-                    </select>
-                </div>
-                <div class="form-group col-sm-2">
-                    <select class="form-control" id="gender" name="gender">
-                        <option value="">Giới tính</option>
-                        <option value= "nam">Nam</option>
-                        <option value= "nu">Nữ</option>
-                        <option value= "other">Other</option>
-                    </select>
-                </div>
-                <div class="form-group col-sm-1">
-                    <button type="button" name="button" id="submitBtn" class="btn btn-primary" onclick="getTutor(1)"><span class="glyphicon glyphicon-search"></span></button>
-                </div>
-            </form>
+            <div class="form-group col-sm-2">
+                <select class="form-control" id="job" name="job">
+                    <option value="">Chức danh</option>
+                    <option value= "hoc sinh">Học sinh</option>
+                    <option value= "sinh vien">Sinh viên</option>
+                    <option value= "giang vien">Giảng viên</option>
+                </select>
+            </div>
+            <div class="form-group col-sm-2">
+                <select class="form-control" id="gender" name="gender">
+                    <option value="">Giới tính</option>
+                    <option value= "nam">Nam</option>
+                    <option value= "nu">Nữ</option>
+                    <option value= "other">Other</option>
+                </select>
+            </div>
+            <div class="form-group col-sm-1">
+                <button type="button" name="button" id="submitBtn" class="btn btn-primary" onclick="getTutor(1)"><span class="glyphicon glyphicon-search"></span></button>
+            </div>
         </div>
-
         <div class="col-sm-12" id="result">
 
         </div>
-    </div>
+    </form>
+
+
+    
+        
 @stop
 
 
 @section('footer')
+    <script src="/js/loadDisqus.js" charset="utf-8"></script>
     <script src="/js/Hongmodal.js" charset="utf-8"></script>
     <script type="text/javascript">
         $("document").ready(function(){
@@ -136,6 +152,7 @@
                     $("#result").html(data);
                     var cw = $('.profile-img').width();
                     $('.profile-img').css({'height':0.7*cw+'px'});
+                    // $('iframe').attr("src").replace("watch?v=", "v/");
                     // console.log(data);
                 },
                 error: function(xhr, status, error) {

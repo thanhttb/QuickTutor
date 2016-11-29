@@ -1,27 +1,32 @@
 @extends('layouts.app')
 
 @section('header')
-    <title>Profile</title>
+    <title>Profile | Tutor Online</title>
+    <link href="/css/responsive-iframe.css" rel="stylesheet">
+    <link href="/css/viewProfile.css" rel="stylesheet">
 @stop
 
 @section('content')
-    @if($user->id == Auth::user()->id)
-        <div class="btn-group btn-group-justified">
-                <a href= {{ url('/edit'.'/'.Auth::user()->id)}} class="btn btn-primary btn-block">Edit/Create Profile</a>
-                <a href= {{ url('/delete'.'/'.Auth::user()->id)}} class="btn btn-primary btn-block">Delete Profile</a>
-        </div>
-    @endif
+	@if(Auth::user())
+		@if($user->id == Auth::user()->id)
+	        <div class="btn-group btn-group-justified">
+	                <a href= {{ url('/edit'.'/'.Auth::user()->id)}} class="btn btn-primary btn-block">Edit/Create Profile</a>
+	                <a href= {{ url('/delete'.'/'.Auth::user()->id)}} class="btn btn-primary btn-block">Delete Profile</a>
+	        </div>
+	    @endif
+	@endif
+
     <hr>
     @if($user->profile)
         <?php $profile = $user->profile; ?>
-        <div id="profile-info">
-            <h2 class="modal-title text-center">THÔNG TIN GIA SƯ</h2>
+        <div class="col-sm-12" id="profile-info" style="background-color: #ffffff">
+            <h2 class="text-center head">THÔNG TIN GIA SƯ</h2>
             <hr>
             <div class="col-sm-6">
                 <img src= {{$profile->linkAvatar}} class="img-responsive img-centered img-rounded" alt="">
             </div>
             <div class="col-sm-6">
-              <h4 class="text-center text-success">THÔNG TIN CÁ NHÂN</h4>
+              <h4 class="text-center text-success index">THÔNG TIN CÁ NHÂN</h4>
               <p>Họ và tên: {{$profile->name}}</p>
               <p>Sinh ngày: <?php $x = Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $profile->birthDay) ?> {{$x->day}}/{{$x->month}}/{{$x->year}}</p>
               <p>Giới tính: {{$profile->gender}}</p>
@@ -33,12 +38,12 @@
             </div>
             <div class="form-group col-sm-12">
               <hr>
-              <h4 class="text-center text-success">GIỚI THIỆU</h4>
+              <h4 class="text-center text-success index">GIỚI THIỆU</h4>
               <pre style="white-space:pre-line; word-break:break-word;"> {{$profile->bio}}</pre>
             </div>
             <div class="form-group col-sm-12">
               <hr>
-              <h4 class="text-center text-success">THÔNG TIN GIẢNG DẠY</h4>
+              <h4 class="text-center text-success index">THÔNG TIN GIẢNG DẠY</h4>
               <br>
               <div class="col-sm-6">
                   <div class="form-group">
@@ -107,7 +112,7 @@
                       @endforeach
                   </ul>
                   <hr>
-                  <p><strong>Giá tiền:</strong> {{$profile->price}} - 1 giờ</p>
+                  <p style="color: red"><strong>Giá tiền:</strong> {{$profile->price}} - 1 giờ</p>
                   <hr>
                   <strong>Có thể dạy ở những địa điểm sau:</strong>
                   <ul>
@@ -116,12 +121,45 @@
                       @endforeach
                   </ul>
               </div>
+
+            <div>
+              @if($profile->linkVideo)
+                <div class="col-sm-12">
+                  <hr>
+                  <h4 class="text-center text-success index">YOUTUBE</h4>
+                  <br>
+                  <div class="wrapper">
+                      <div class="h_iframe">
+                          <img class="ratio" src="http://placehold.it/16x9"/>
+                          <iframe src="{{str_replace("watch?v=","v/",$profile->linkVideo)}}" frameborder="0" allowfullscreen></iframe>
+                      </div>
+                  </div>
+              </div>
+              @endif
+            </div>
+            <!-- disqus comment -->
+            <div id="disqus_thread"></div>
+            <script>
+	            var disqus_config = function () {
+		            this.page.url = 'http://localhost:8000/profile/{{$profile->id}}';
+		            this.page.identifier = 'profile_{{$profile->id}}';
+	            };
+
+	            (function() {
+	            var d = document, s = d.createElement('script');
+	            s.src = '//tutoronline.disqus.com/embed.js';
+	            s.setAttribute('data-timestamp', +new Date());
+	            (d.head || d.body).appendChild(s);
+	            })();
+            </script>
+            <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
         </div>
     @endif
-
 @stop
 
 @section('footer')
+	{{-- <script id="dsq-count-scr" src="//tutoronline.disqus.com/count.js" async></script> --}}
     <script type="text/javascript">
         $(document).ready(function(){
             $(".btn").hover(function(){
@@ -130,9 +168,11 @@
                 $(this).css({"background-color": "#2c3e50", "color": "#ffffff"});
             });
         });
-        @foreach($profile->times as $time)
-            var idtime = "#time" + {{$time->id}};
-            $(idtime).attr("checked", true);
-        @endforeach
+        @if($user->profile)
+            @foreach($profile->times as $time)
+                var idtime = "#time" + {{$time->id}};
+                $(idtime).attr("checked", true);
+            @endforeach
+        @endif
     </script>
 @stop

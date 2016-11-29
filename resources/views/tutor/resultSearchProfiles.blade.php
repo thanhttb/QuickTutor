@@ -5,13 +5,13 @@
                 <div class="row">
                     <div class="col-lg-12 text-center">
                         <h2 class="section-heading">Gia sư tìm thấy</h2>
-                        <h3 class="section-subheading text-muted">Phù hợp với yêu cầu của bạn</h3>
+                        <h3 class="section-subheading">Phù hợp với yêu cầu của bạn</h3>
                     </div>
                 </div>
                 <div class="row">
     				@foreach($profiles as $profile)
     					<div class="col-md-4 col-sm-6 portfolio-item">
-    	                    <a href="#modal{{$profile->id}}" class="portfolio-link" data-toggle="modal">
+    	                    <a href="#modal{{$profile->id}}" onclick="loadDisqus('{{$profile->id}}')" class="portfolio-link" data-toggle="modal">
     	                        <div class="portfolio-hover">
     	                            <div class="portfolio-hover-content">
     	                                <i class="fa fa-plus fa-3x"></i>
@@ -35,14 +35,14 @@
             <div class="modal-content">
               <div class="modal-header">
                  <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                 <h2 class="modal-title text-center">THÔNG TIN GIA SƯ</h2>
+                 <h2 class="modal-title text-center head">THÔNG TIN GIA SƯ</h2>
               </div>
               <div class="modal-body row">
                   <div class="col-sm-6">
                       <img src= {{$profile->linkAvatar}} class="img-responsive img-centered img-rounded" alt="">
                   </div>
                   <div class="col-sm-6">
-                    <h4 class="text-center text-success">THÔNG TIN CÁ NHÂN</h4>
+                    <h4 class="text-center text-success index">THÔNG TIN CÁ NHÂN</h4>
                     <p>Họ và tên: {{$profile->name}}</p>
                     <p>Sinh ngày: <?php $x = Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $profile->birthDay) ?> {{$x->day}}/{{$x->month}}/{{$x->year}}</p>
                     <p>Giới tính: {{$profile->gender}}</p>
@@ -54,12 +54,12 @@
                   </div>
                   <div class="form-group col-sm-12">
                     <hr>
-                    <h4 class="text-center text-success">GIỚI THIỆU</h4>
+                    <h4 class="text-center text-success index">GIỚI THIỆU</h4>
                     <pre style="white-space:pre-line; word-break:break-word;"> {{$profile->bio}}</pre>
                   </div>
                   <div class="form-group col-sm-12">
                     <hr>
-                    <h4 class="text-center text-success">THÔNG TIN GIẢNG DẠY</h4>
+                    <h4 class="text-center text-success index">THÔNG TIN GIẢNG DẠY</h4>
                     <br>
                     <div class="col-sm-6">
                         <div class="form-group">
@@ -128,7 +128,7 @@
                             @endforeach
                         </ul>
                         <hr>
-                        <p><strong>Giá tiền:</strong> {{$profile->price}} - 1 giờ</p>
+                        <p style="color: red"><strong>Giá tiền:</strong> {{$profile->price}} - 1 giờ</p>
                         <hr>
                         <strong>Có thể dạy ở những địa điểm sau:</strong>
                         <ul>
@@ -138,7 +138,28 @@
                         </ul>
                     </div>
                   </div>
+
+                  {{-- google,youtube  bug here ytcfg is not defined --}}
+                  @if($profile->linkVideo)
+                  <div class="col-sm-12">
+                    <hr>
+                    <h4 class="text-center text-success index">YOUTUBE</h4>
+                      <br>
+                      <div class="wrapper">
+                          <div class="h_iframe">
+                              <img class="ratio" src="http://placehold.it/16x9"/>
+                              <iframe src="{{str_replace("watch?v=","embed/",$profile->linkVideo)}}" frameborder="0" allowfullscreen></iframe>
+                          </div>
+                      </div>
+                  </div>
+                  @endif
+
+                  <div id="profile_{{$profile->id}}" class="form-group col-sm-12">
+                  
+                  </div>
               </div>
+
+
               <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
               </div>
@@ -152,7 +173,7 @@
                 <div class="row">
                     <div class="col-lg-12 text-center">
                         <h2 class="section-heading">Không tìm thấy kết quả nào</h2>
-                        <h3 class="section-subheading text-muted">Phù hợp với yêu cầu của bạn</h3>
+                        <h3 class="section-subheading">Phù hợp với yêu cầu của bạn</h3>
                     </div>
                 </div>
             </div>
@@ -165,6 +186,4 @@
         $(idtime).attr("checked", true);
     @endforeach
 @endforeach
-
-
 </script>

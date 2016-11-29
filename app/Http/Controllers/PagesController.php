@@ -2,18 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-
-use App\Http\Requests;
-
 use App;
-use App\Profile;
+use App\City;
+use App\Time;
 use App\User;
+use App\Profile;
 use App\Subject;
 use App\District;
 use App\Attachment;
-use App\Time;
-use App\City;
+use App\Http\Requests;
+use Illuminate\Http\Request;
 
 class PagesController extends Controller
 {

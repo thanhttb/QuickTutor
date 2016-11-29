@@ -25,9 +25,17 @@ Route::get('/profile/{user}', 'ProfilesController@index');
 
 Route::get('/edit/{user}', 'ProfilesController@edit');
 
-Route::get('/delete/{user}', 'ProfilesController@destroy');
+// Route::get('/delete/{user}', 'ProfilesController@destroy');
 
 Route::get('/makeData', 'ProfilesController@addSampleData');
+
+Route::get('/about', function(){
+    return view('pages.about');
+});
+
+Route::get('/contact', function(){
+    return view('pages.contact');
+});
 
 // Route::get('/test', function(){
 //     return view('test');
