@@ -4,30 +4,30 @@
             <div class="container">
                 <div class="row">
                     <div class="col-lg-12 text-center">
-                        <h2 class="section-heading">Gia sư tìm thấy</h2>
-                        <h3 class="section-subheading">Phù hợp với yêu cầu của bạn</h3>
+                        <h2 class="section-heading noti">Gia sư tìm thấy</h2>
+                        <h3 class="section-subheading noti">Phù hợp với yêu cầu của bạn</h3>
                     </div>
                 </div>
                 <div class="row">
-    				@foreach($profiles as $profile)
-    					<div class="col-md-4 col-sm-6 portfolio-item">
-    	                    <a href="#modal{{$profile->id}}" onclick="loadDisqus('{{$profile->id}}')" class="portfolio-link" data-toggle="modal">
-    	                        <div class="portfolio-hover">
-    	                            <div class="portfolio-hover-content">
-    	                                <i class="fa fa-plus fa-3x"></i>
-    	                            </div>
-    	                        </div>
+            @foreach($profiles as $profile)
+              <div class="col-md-4 col-sm-6 portfolio-item">
+                          <a href="#modal{{$profile->id}}" onclick="loadDisqus('{{$profile->id}}')" class="portfolio-link" data-toggle="modal">
+                              <div class="portfolio-hover">
+                                  <div class="portfolio-hover-content">
+                                      <i class="fa fa-plus fa-3x"></i>
+                                  </div>
+                              </div>
                                 <img class="profile-img" src= {{$profile->linkAvatar}}  alt="">
-    	                    </a>
-    	                    <div class="portfolio-caption">
-    	                        <h4>{{$profile->name}} 
+                          </a>
+                          <div class="portfolio-caption">
+                              <h4>{{$profile->name}} 
                               @if($profile->birthDay)
                                 - {{$year = Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $profile->birthDay)->year}}</h4>
-      	                        <p class="text-muted"> Giá: {{$profile->price}}/giờ</p>
+                                <p class="text-muted"> Giá: {{$profile->price}}/giờ</p>
                               @endif
-    	                    </div>
-    	                </div>
-    				@endforeach
+                          </div>
+                      </div>
+            @endforeach
                 </div>
             </div>
     </section>
@@ -177,8 +177,8 @@
             <div class="container">
                 <div class="row">
                     <div class="col-lg-12 text-center">
-                        <h2 class="section-heading">Không tìm thấy kết quả nào</h2>
-                        <h3 class="section-subheading">Phù hợp với yêu cầu của bạn</h3>
+                        <h2 class="section-heading noti">Không tìm thấy kết quả nào</h2>
+                        <h3 class="section-subheading noti">Phù hợp với yêu cầu của bạn</h3>
                     </div>
                 </div>
             </div>

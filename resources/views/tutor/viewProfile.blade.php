@@ -7,14 +7,14 @@
 @stop
 
 @section('content')
-	@if(Auth::user())
-		@if($user->id == Auth::user()->id)
-	        <div class="btn-group btn-group-justified">
-	                <a href= {{ url('/edit'.'/'.Auth::user()->id)}} class="btn btn-primary btn-block">Edit/Create Profile</a>
-	                <a href= {{ url('/delete'.'/'.Auth::user()->id)}} class="btn btn-primary btn-block">Delete Profile</a>
-	        </div>
-	    @endif
-	@endif
+  @if(Auth::user())
+    @if($user->id == Auth::user()->id)
+          <div class="btn-group btn-group-justified">
+                  <a href= {{ url('/edit'.'/'.Auth::user()->id)}} class="btn btn-primary btn-block">Edit/Create Profile</a>
+                  <a href= {{ url('/delete'.'/'.Auth::user()->id)}} class="btn btn-primary btn-block">Delete Profile</a>
+          </div>
+      @endif
+  @endif
 
     <hr>
     @if($user->profile)
@@ -142,17 +142,17 @@
             <!-- disqus comment -->
             <div id="disqus_thread"></div>
             <script>
-	            var disqus_config = function () {
-		            this.page.url = 'http://localhost:8000/profile/{{$profile->id}}';
-		            this.page.identifier = 'profile_{{$profile->id}}';
-	            };
+              var disqus_config = function () {
+                this.page.url = 'http://localhost:8000/profile/{{$profile->id}}';
+                this.page.identifier = 'profile_{{$profile->id}}';
+              };
 
-	            (function() {
-	            var d = document, s = d.createElement('script');
-	            s.src = '//tutoronline.disqus.com/embed.js';
-	            s.setAttribute('data-timestamp', +new Date());
-	            (d.head || d.body).appendChild(s);
-	            })();
+              (function() {
+              var d = document, s = d.createElement('script');
+              s.src = '//tutoronline.disqus.com/embed.js';
+              s.setAttribute('data-timestamp', +new Date());
+              (d.head || d.body).appendChild(s);
+              })();
             </script>
             <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
 
@@ -161,7 +161,7 @@
 @stop
 
 @section('footer')
-	{{-- <script id="dsq-count-scr" src="//tutoronline.disqus.com/count.js" async></script> --}}
+  {{-- <script id="dsq-count-scr" src="//tutoronline.disqus.com/count.js" async></script> --}}
     <script type="text/javascript">
         $(document).ready(function(){
             $(".btn").hover(function(){

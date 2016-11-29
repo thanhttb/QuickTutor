@@ -18,12 +18,13 @@
           -moz-background-size: cover;
           background-size: cover;
           -o-background-size: cover;
-          text-align: center;
-          color: white;
         }
         #filter{
             padding-top: 75px;
-            padding-bottom: 1200px;
+            padding-bottom: 1500px;
+        }
+        .noti{
+            color: white;
         }
     </style>
 @stop
@@ -166,14 +167,14 @@
         });
 
         $(window).on('hashchange',function(){
-			page = window.location.hash.replace('#','');
-			getTutor(page);
-		});
-		$(document).on('click','.pagination a', function(e){
-			e.preventDefault();
-			var page = $(this).attr('href').split('page=')[1];
-			location.hash = page;
-		});
+            page = window.location.hash.replace('#','');
+            getTutor(page);
+        });
+        $(document).on('click','.pagination a', function(e){
+            e.preventDefault();
+            var page = $(this).attr('href').split('page=')[1];
+            location.hash = page;
+        });
     </script>
     <script type="text/javascript">
         $.ajaxSetup({
