@@ -21,6 +21,7 @@
 - learn boostrap: lien, thuat 			-> done 
 - continue design database: hong, Thanh 	-> done
 - define route, and main pages (nav bar, header, footer)and : hong, thanh -> done
+
 -----------------------------------------------
 ## Week05 ##
 **Task for this week**:
@@ -29,6 +30,7 @@
 - frontend view profile: lien -> done
 - frontend editprofile: thuat-> done
 - research jquery with ajax: thuat, thanh -> pending
+
 ----------------------------------------------
 ## Week06 ##
 **Task for this week**:
@@ -36,27 +38,32 @@
 - research bootswatch: hong, thuat -> done
 - research startboostrap: hong, lien -> done
 - research jquery with ajax: thuat, thanh -> done
+
 -----------------------------------------------
 ## Week07 ##
 ## Week08 ##
 - continue research and prepare for midterm
+
 -----------------------------------------------
 ## Week09 ##
 **Task for this week**:
 - fontend find tutor page: hong, lien ->done
 - fontend about: thuat -> done
 - use ajax send request to backend: thanh -> done
+
 -----------------------------------------------
 ## Week10 ##
 **Task for this week**:
 - learn query database laravel5: hong-> done
 - apply agency theme: thuat -> done
 - apply boostrapfly theme: lien -> pending
+
 -----------------------------------------------
 ## Week11 ##
 **Task for this week**:
 - backend give the result for find tutor: hong -> done
 - apply freelancer theme: lien -> done
+
 ------------------------------------------------
 ## Week12 ##
 **Task for this week**:
@@ -64,12 +71,14 @@
 - find the way to deal with realtime comment: Hong-> pending
 - embebed video to profile: thanh -> pending
 - research heroku sever
+
 ------------------------------------------------
 ## Week13 ##
 **Task for this week**:
 - embebeb video: thanh -> done
 - research disqus and build comment system: hong -> pending
 - deploy on heroku sever
+
 ------------------------------------------------
 ## Week14 ##
 **Task for this week**:
